@@ -1,9 +1,8 @@
 
 import { getStep } from '../utils';
 import { PIZZAS } from '../../mockData';
-import { MenuListItem } from '../../components/MenuListItem';
+import { MenuListItem, List } from '../../components';
 import { StepContent } from './shared';
-import { List } from '../../components/List';
 
 export const PizzaStep = () => {
   return (
