@@ -26,4 +26,4 @@ export const PIZZAS: Pizza[] = [
     price: 41,
     ingredients: ['Tomato sauce', 'Mozzarella', 'Olives', 'Feta']
   }
-]
+].map((pizza, index) => ({ ...pizza, id: `pizza-${index}` } as Pizza))
