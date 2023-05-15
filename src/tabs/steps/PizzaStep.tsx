@@ -15,7 +15,7 @@ export const PizzaStep = () => {
             name={name}
             price={price}
             description={ingredients.join(', ')}
-            quantity={1}
+            quantity={0}
             setQuantity={() => null}
           />
         ))}
