@@ -1,14 +1,17 @@
 import * as Tabs from '@radix-ui/react-tabs';
-import { StepTabs, Steps } from './tabs';
+import { StepTabs, Steps, StepsNavigation } from './tabs';
 import { PageContent } from './components';
-import { steps } from './tabs/utils';
+import { useSteps } from './providers/StepsProvider';
 
 export const App = () => {
+  const { currentStep } = useSteps()
+
   return (
     <PageContent>
-      <Tabs.Root defaultValue={steps[0]}>
+      <Tabs.Root value={currentStep}>
         <StepTabs />
         <Steps />
+        <StepsNavigation />
       </Tabs.Root>
     </PageContent>
   )

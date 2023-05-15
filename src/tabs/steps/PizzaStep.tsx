@@ -2,7 +2,7 @@
 import { getStep } from '../utils';
 import { PIZZAS } from '../../mockData';
 import { MenuListItem } from '../../components/MenuListItem';
-import { StepContent } from './StepContent';
+import { StepContent } from './shared';
 import { List } from '../../components/List';
 
 export const PizzaStep = () => {

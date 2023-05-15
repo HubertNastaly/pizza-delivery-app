@@ -1,6 +1,4 @@
-export const steps = ['pizza', 'extras', 'discounts', 'delivery-details', 'summary'] as const
-
-export type Step = typeof steps[number]
+import { Step } from "../providers/StepsProvider"
 
 export const getStep = (step: Step) => step
 

@@ -1,13 +1,16 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { orange, mauve } from '@radix-ui/colors';
 import { styled } from '@stitches/react';
-import { steps, toTabName } from './utils';
+import { toTabName } from './utils';
+import { steps, useSteps } from '../providers/StepsProvider';
 
 export const StepTabs = () => {
+  const { currentStep } = useSteps()
+
   return (
     <TabsList>
       {steps.map((step, index) => (
-        <TabsTrigger key={`tab-${step}`} value={step}>
+        <TabsTrigger key={`tab-${step}`} value={step} disabled={step !== currentStep}>
           {`${index + 1} ${toTabName(step)}`}
         </TabsTrigger>
       ))}
@@ -36,7 +39,6 @@ const TabsTrigger = styled(Tabs.Trigger, {
   userSelect: 'none',
   '&:first-child': { borderTopLeftRadius: 6 },
   '&:last-child': { borderTopRightRadius: 6 },
-  '&:hover': { color: orange.orange11 },
   '&[data-state="active"]': {
     color: orange.orange11,
     boxShadow: 'inset 0 -1px 0 0 currentColor, 0 1px 0 0 currentColor',
