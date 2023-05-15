@@ -3,6 +3,7 @@ import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
 import { MenuItem } from "../types"
 import { ListItem } from "./List"
 import { useOrder } from "../providers"
+import { mauve } from "@radix-ui/colors"
 
 interface Props {
   menuItem: MenuItem
@@ -83,5 +84,14 @@ const ControlButton = styled('button', {
   borderRadius: '50%',
   border: 'none',
   background: 'none',
-  cursor: 'pointer'
+  cursor: 'pointer',
+
+  variants: {
+    disabled: {
+      true: {
+        cursor: 'default',
+        color: mauve.mauve11
+      }
+    }
+  }
 })
