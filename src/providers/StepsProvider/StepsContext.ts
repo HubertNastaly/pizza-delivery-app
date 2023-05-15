@@ -1,6 +1,6 @@
 import { createContext, useContext } from "react"
 
-export const steps = ['pizza', 'extras', 'discounts', 'delivery-details', 'summary'] as const
+export const steps = ['pizza', 'extras', 'delivery-details', 'summary'] as const
 
 export type Step = typeof steps[number]
 
