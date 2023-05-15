@@ -1,17 +1,19 @@
 import { styled } from "@stitches/react"
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
-import { Price } from "../types"
+import { MenuItem } from "../types"
 import { ListItem } from "./List"
+import { useOrder } from "../providers"
 
 interface Props {
-  name: string
-  price: Price
-  quantity: number
-  setQuantity: (value: number) => void
+  menuItem: MenuItem
   description?: string
 }
 
-export const MenuListItem = ({ name, price, description, quantity, setQuantity }: Props) => {
+export const MenuListItem = ({ description, menuItem }: Props) => {
+  const { id, name, price } = menuItem
+  const { order, addMenuItem, removeMenuItem } = useOrder()
+  const quantity = order.items.find(({ type }) => type.id === id)?.quantity ?? 0
+
   return (
     <ListItem>
       <TextGroup>
@@ -24,11 +26,11 @@ export const MenuListItem = ({ name, price, description, quantity, setQuantity }
         )}
       </TextGroup>
       <QuantityControl>
-        <ControlButton onClick={() => setQuantity(quantity - 1)} disabled={quantity === 0}>
+        <ControlButton onClick={() => removeMenuItem(menuItem)} disabled={quantity === 0}>
           <HiOutlineMinusCircle size={24} />
         </ControlButton>
         <Quantity>{quantity}</Quantity>
-        <ControlButton onClick={() => setQuantity(quantity + 1)}>
+        <ControlButton onClick={() => addMenuItem(menuItem)}>
           <HiOutlinePlusCircle size={24} />
         </ControlButton>
       </QuantityControl>

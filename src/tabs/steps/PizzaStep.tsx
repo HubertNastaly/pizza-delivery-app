@@ -9,14 +9,11 @@ export const PizzaStep = () => {
   return (
     <StepContent value={getStep('pizza')}>
       <List>
-        {PIZZAS.map(({ name, price, ingredients }) => (
+        {PIZZAS.map(pizza => (
           <MenuListItem
-            key={`pizza-${name}`}
-            name={name}
-            price={price}
-            description={ingredients.join(', ')}
-            quantity={0}
-            setQuantity={() => null}
+            key={pizza.id}
+            menuItem={pizza}
+            description={pizza.ingredients.join(', ')}
           />
         ))}
       </List>
