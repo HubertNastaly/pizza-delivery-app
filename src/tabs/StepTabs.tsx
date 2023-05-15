@@ -1,8 +1,7 @@
 import * as Tabs from '@radix-ui/react-tabs';
 import { orange, mauve } from '@radix-ui/colors';
 import { styled } from '@stitches/react';
-
-const steps = ['pizza', 'extras', 'discounts', 'delivery-details', 'summary'] as const
+import { steps, toTabName } from './utils';
 
 export const StepTabs = () => {
   return (
@@ -14,11 +13,6 @@ export const StepTabs = () => {
       ))}
     </TabsList>
   )
-}
-
-function toTabName(stepName: typeof steps[number]) {
-  const upperCasedName = stepName[0].toUpperCase() + stepName.slice(1)
-  return upperCasedName.replace('-', ' ')
 }
 
 const TabsList = styled(Tabs.List, {
