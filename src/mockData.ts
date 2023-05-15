@@ -1,4 +1,4 @@
-import { Pizza } from "./types";
+import { MenuItem, Pizza } from "./types";
 
 export const PIZZAS: Pizza[] = [
   {
@@ -27,3 +27,22 @@ export const PIZZAS: Pizza[] = [
     ingredients: ['Tomato sauce', 'Mozzarella', 'Olives', 'Feta']
   }
 ].map((pizza, index) => ({ ...pizza, id: `pizza-${index}` } as Pizza))
+
+export const EXTRAS: MenuItem[] = [
+  {
+    name: 'Ketchup',
+    price: 3
+  },
+  {
+    name: 'Garlic sauce',
+    price: 4
+  },
+  {
+    name: 'Coca cola 0,3l',
+    price: 8
+  },
+  {
+    name: 'Water 0,2l',
+    price: 5
+  }
+].map((item, index) => ({ ...item, id: `extra-${index}`}))
