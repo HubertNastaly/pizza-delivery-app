@@ -12,6 +12,8 @@ export interface Pizza extends MenuItem {
 
 export type Ingredient = 'Tomato sauce' | 'Mozzarella' | 'Ham' | 'Mushrooms' | 'Peperoni' | 'Onion' | 'Pepper' | 'Olives' | 'Feta'
 
+export type Items = { type: MenuItem, quantity: number }[]
+
 export interface Order {
-  items: { type: MenuItem, quantity: number }[]
+  items: Items
 }
