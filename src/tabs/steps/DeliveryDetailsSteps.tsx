@@ -7,6 +7,7 @@ import { Input } from "../../components"
 import { UseFormRegisterReturn, useFormContext } from "react-hook-form"
 import { ForwardedRef, forwardRef } from "react"
 import { red } from "@radix-ui/colors"
+import { formatLabel } from "../../utils/formatLabel"
 
 type FieldName = keyof Order['deliveryDetails']
 
@@ -18,32 +19,26 @@ export const DeliveryDetailsSteps = () => {
       <FormRoot>
         <FormInput
           fieldName="firstName"
-          label="First name"
           {...register('deliveryDetails.firstName')}
         />
         <FormInput
           fieldName="lastName"
-          label="Last name"
           {...register('deliveryDetails.lastName')}
         />
         <FormInput
           fieldName="email"
-          label="Email"
           {...register('deliveryDetails.email')}
         />
         <FormInput
           fieldName="city"
-          label="City"
           {...register('deliveryDetails.city')}
         />
         <FormInput
           fieldName="street"
-          label="Street"
           {...register('deliveryDetails.street')}
         />
         <FormInput
           fieldName="houseNumber"
-          label="House number"
           {...register('deliveryDetails.houseNumber')}
         />
         {/* TODO: purchase proof and tax id*/}
@@ -54,17 +49,16 @@ export const DeliveryDetailsSteps = () => {
 
 interface FieldProps<T extends FieldName> extends UseFormRegisterReturn<`deliveryDetails.${T}`> {
   fieldName: T
-  label: string
 }
 
-const FormInputComponent = <T extends FieldName> ({ fieldName, label, ...inputProps }: FieldProps<T>, ref: ForwardedRef<HTMLInputElement>) => {
+const FormInputComponent = <T extends FieldName> ({ fieldName, ...inputProps }: FieldProps<T>, ref: ForwardedRef<HTMLInputElement>) => {
   const { formState: { errors } } = useFormContext<Order>()
   const error = errors['deliveryDetails']?.[fieldName]
 
   return (
     <FormField name={fieldName}>
       <InputTopLine>
-        <FormLabel>{label}</FormLabel>
+        <FormLabel>{formatLabel(fieldName)}</FormLabel>
         {error && (
           <FormError>{error.message}</FormError>
         )}
