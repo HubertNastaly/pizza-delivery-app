@@ -1,9 +1,10 @@
 import { styled } from "@stitches/react"
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
-import { MenuItem } from "../types"
+import { MenuItem, Order } from "../types"
 import { ListItem } from "./List"
 import { useOrder } from "../providers"
 import { mauve } from "@radix-ui/colors"
+import { useFormContext } from "react-hook-form"
 
 interface Props {
   menuItem: MenuItem
@@ -12,8 +13,11 @@ interface Props {
 
 export const MenuListItem = ({ description, menuItem }: Props) => {
   const { id, name, price } = menuItem
-  const { order, addMenuItem, removeMenuItem } = useOrder()
-  const quantity = order.items.find(({ type }) => type.id === id)?.quantity ?? 0
+  const { addMenuItem, removeMenuItem } = useOrder()
+  const { watch } = useFormContext<Order>()
+
+  const items = watch('items')
+  const quantity = items.find(({ type }) => type.id === id)?.quantity ?? 0
 
   return (
     <ListItem>

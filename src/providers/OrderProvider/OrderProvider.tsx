@@ -2,23 +2,20 @@ import { ReactNode, useCallback } from "react"
 import { FormProvider, useForm } from "react-hook-form"
 import { MenuItem } from "../../types"
 import { OrderContext } from "./OrderContext"
-
-interface FormData {
-  items: { type: MenuItem, quantity: number }[]
-}
+import { Order } from "../../types"
 
 interface Props {
   children: ReactNode
 }
 
 export const OrderProvider = ({ children }: Props) => {
-  const formContext = useForm<FormData>({
+  const formContext = useForm<Order>({
     defaultValues: {
       items: []
     }
   })
 
-  const { setValue, getValues, watch } = formContext
+  const { setValue, getValues } = formContext
 
   const addMenuItem = useCallback((addedItem: MenuItem) => {
     const items = getValues('items')
@@ -53,12 +50,8 @@ export const OrderProvider = ({ children }: Props) => {
     setValue('items', items)
   }, [setValue, getValues])
 
-  const order = {
-    items: watch('items')
-  }
-
   return (
-    <OrderContext.Provider value={{ order, addMenuItem, removeMenuItem }} >
+    <OrderContext.Provider value={{ addMenuItem, removeMenuItem }} >
       <FormProvider {...formContext}>
         {children}
       </FormProvider>
