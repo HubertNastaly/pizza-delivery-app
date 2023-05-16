@@ -12,18 +12,22 @@ export interface Pizza extends MenuItem {
 
 export type Ingredient = 'Tomato sauce' | 'Mozzarella' | 'Ham' | 'Mushrooms' | 'Peperoni' | 'Onion' | 'Pepper' | 'Olives' | 'Feta'
 
-export type Items = { type: MenuItem, quantity: number }[]
+export type OrderItem = { type: MenuItem, quantity: number }
+
+export const purchaseProofOptions = ['invoice', 'receipt'] as const
+
+export interface DeliveryDetails {
+  firstName: string
+  lastName: string
+  email: string
+  city: string
+  street: string
+  houseNumber: number
+  purchaseProof: typeof purchaseProofOptions[number]
+  taxId?: string
+}
 
 export interface Order {
-  items: Items
-  deliveryDetails: {
-    firstName: string
-    lastName: string
-    email: string
-    city: string
-    street: string
-    houseNumber: number
-    purchaseProof: 'invoice' | 'receipt'
-    taxId?: string
-  }
+  items: OrderItem[]
+  deliveryDetails: DeliveryDetails
 }
