@@ -9,7 +9,7 @@ const deliveryDetailsSchema = new yup.ObjectSchema<DeliveryDetails>({
   email: yup.string().required(REQUIRED_MSG).email('Invalid email address'),
   city: yup.string().required(REQUIRED_MSG),
   street: yup.string().required(REQUIRED_MSG),
-  houseNumber: yup.number().required(REQUIRED_MSG).integer().positive(),
+  houseNumber: yup.number().required(REQUIRED_MSG).typeError('Invalid number').integer().positive(),
   purchaseProof: yup.string().required(REQUIRED_MSG).oneOf(purchaseProofOptions),
   taxId: yup.string().optional()
 })

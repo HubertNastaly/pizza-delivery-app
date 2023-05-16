@@ -5,6 +5,7 @@ import { ListItem } from "./List"
 import { useOrder } from "../providers"
 import { mauve } from "@radix-ui/colors"
 import { useFormContext } from "react-hook-form"
+import { formatPrice } from "../utils/formatPrice"
 
 interface Props {
   menuItem: MenuItem
@@ -24,7 +25,7 @@ export const MenuListItem = ({ description, menuItem }: Props) => {
       <TextGroup>
         <TopLine>
           <ItemName>{name}</ItemName>
-          <ItemPrice>{price} PLN</ItemPrice>
+          <ItemPrice>{formatPrice(price)}</ItemPrice>
         </TopLine>
         {description && (
           <Description>{description}</Description>

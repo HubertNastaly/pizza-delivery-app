@@ -6,6 +6,10 @@ import { Order } from "../../types"
 import { yupResolver } from '@hookform/resolvers/yup'
 import { orderSchema } from "../../schemas"
 
+const DEFAULT_STATE = {
+  items: [],
+}
+
 interface Props {
   children: ReactNode
 }
@@ -14,9 +18,7 @@ export const OrderProvider = ({ children }: Props) => {
   const formContext = useForm<Order>({
     resolver: yupResolver(orderSchema),
     mode: 'onChange',
-    defaultValues: {
-      items: []
-    },
+    defaultValues: DEFAULT_STATE,
   })
 
   const { setValue, getValues } = formContext
