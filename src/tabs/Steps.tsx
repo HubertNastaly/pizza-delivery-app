@@ -1,10 +1,10 @@
-import { PizzaStep, ExtrasStep, DeliveryDetailsSteps, SummaryStep } from "./steps";
+import { PizzaStep, ExtrasStep, DeliveryDetailsStep, SummaryStep } from "./steps";
 
 export const Steps = () => (
   <>
     <PizzaStep />
     <ExtrasStep />
-    <DeliveryDetailsSteps />
+    <DeliveryDetailsStep />
     <SummaryStep />
   </>
 )
