@@ -6,6 +6,7 @@ import { Order } from "../../types"
 import { Input } from "../../components"
 import { UseFormRegisterReturn, useFormContext } from "react-hook-form"
 import { ForwardedRef, forwardRef } from "react"
+import { red } from "@radix-ui/colors"
 
 type FieldName = keyof Order['deliveryDetails']
 
@@ -57,9 +58,17 @@ interface FieldProps<T extends FieldName> extends UseFormRegisterReturn<`deliver
 }
 
 const FormInputComponent = <T extends FieldName> ({ fieldName, label, ...inputProps }: FieldProps<T>, ref: ForwardedRef<HTMLInputElement>) => {
+  const { formState: { errors } } = useFormContext<Order>()
+  const error = errors['deliveryDetails']?.[fieldName]
+
   return (
     <FormField name={fieldName}>
-      <FormLabel>{label}</FormLabel>
+      <InputTopLine>
+        <FormLabel>{label}</FormLabel>
+        {error && (
+          <FormError>{error.message}</FormError>
+        )}
+      </InputTopLine>
       <Form.Control asChild>
         <Input {...inputProps} ref={ref} />
       </Form.Control>
@@ -85,4 +94,13 @@ const FormField = styled(Form.Field, {
 
 const FormLabel = styled(Form.Label, {
 
+})
+
+const FormError = styled(Form.Message, {
+  color: red.red11
+})
+
+const InputTopLine = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between'
 })

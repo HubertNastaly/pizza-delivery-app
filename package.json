@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.1.0",
     "@radix-ui/colors": "^0.1.8",
     "@radix-ui/react-form": "^0.0.2",
     "@radix-ui/react-tabs": "^1.0.3",
@@ -18,7 +19,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.9",
-    "react-icons": "^4.8.0"
+    "react-icons": "^4.8.0",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
