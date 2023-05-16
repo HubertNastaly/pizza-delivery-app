@@ -16,4 +16,14 @@ export type Items = { type: MenuItem, quantity: number }[]
 
 export interface Order {
   items: Items
+  deliveryDetails: {
+    firstName: string
+    lastName: string
+    email: string
+    city: string
+    street: string
+    houseNumber: number
+    purchaseProof: 'invoice' | 'receipt'
+    taxId?: string
+  }
 }

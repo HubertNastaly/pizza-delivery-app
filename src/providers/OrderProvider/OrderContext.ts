@@ -1,18 +1,12 @@
 import { createContext, useContext } from "react"
-import { MenuItem, Order } from "../../types"
-
-export const DEFAULT_ORDER: Order = {
-  items: []
-}
+import { MenuItem } from "../../types"
 
 interface Context {
-  order: Order,
   addMenuItem: (item: MenuItem) => void
   removeMenuItem: (item: MenuItem) => void
 }
 
 export const OrderContext = createContext<Context>({
-  order: DEFAULT_ORDER,
   addMenuItem: () => null,
   removeMenuItem: () => null
 })
