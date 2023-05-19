@@ -1,12 +1,11 @@
 
-import { getStep } from '../utils';
 import { PIZZAS } from '../../mockData';
 import { MenuListItem, List } from '../../components';
 import { StepContent } from './shared';
 
 export const PizzaStep = () => {
   return (
-    <StepContent value={getStep('pizza')}>
+    <StepContent stepName="pizza">
       <List>
         {PIZZAS.map(pizza => (
           <MenuListItem

@@ -2,17 +2,22 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { StepTabs, Steps, StepsNavigation } from './tabs';
 import { PageContent } from './components';
 import { useSteps } from './providers/StepsProvider';
+import { styled } from '@stitches/react';
 
 export const App = () => {
   const { currentStep } = useSteps()
 
   return (
     <PageContent>
-      <Tabs.Root value={currentStep}>
+      <TabsRoot value={currentStep}>
         <StepTabs />
         <Steps />
         <StepsNavigation />
-      </Tabs.Root>
+      </TabsRoot>
     </PageContent>
   )
 }
+
+const TabsRoot = styled(Tabs.Root, {
+  width: '100%'
+})

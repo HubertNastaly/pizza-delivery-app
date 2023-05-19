@@ -1,5 +1,5 @@
-import { ReactNode, useState } from "react"
-import { StepsContext, steps } from "."
+import { ReactNode, useCallback, useState } from "react"
+import { AnimationDirection, StepsContext, steps } from "./StepsContext"
 import { useFormContext } from "react-hook-form"
 import { Order } from "../../types"
 
@@ -8,10 +8,16 @@ interface Props {
 }
 
 export const StepsProvider = ({ children }: Props) => {
-  const [currentStepIndex, setCurrentStepIndex] = useState(0)
+  const [stepsIndicesHistory, setStepsIndicesHistory] = useState<[number, number]>([0, 0])
   const { trigger } = useFormContext<Order>()
 
+  const pushStepIndex = useCallback((stepIndex: number) => {
+    setStepsIndicesHistory(([latestStepIndex]) => [stepIndex, latestStepIndex])
+  }, [setStepsIndicesHistory])
+
+  const currentStepIndex = stepsIndicesHistory[0]
   const currentStep = steps[currentStepIndex]
+  const previousStep = steps[stepsIndicesHistory[1]]
 
   const isLast = currentStepIndex === steps.length - 1
   const nextStep = isLast ? undefined : async () => {
@@ -19,15 +25,17 @@ export const StepsProvider = ({ children }: Props) => {
     const isValid = await trigger(validationTarget)
 
     if(isValid) {
-      setCurrentStepIndex(index => index + 1)
+      pushStepIndex(currentStepIndex + 1)
     }
   }
 
   const isFirst = currentStepIndex === 0
-  const previousStep = isFirst ? undefined : () => setCurrentStepIndex(index => index - 1)
+  const stepBack = isFirst ? undefined : () => pushStepIndex(currentStepIndex - 1)
+
+  const animationDirection: AnimationDirection = stepsIndicesHistory[0] < stepsIndicesHistory[1] ? 'leftToRight' : 'rightToLeft'
 
   return (
-    <StepsContext.Provider value={{ currentStep, nextStep, previousStep }}>
+    <StepsContext.Provider value={{ currentStep, nextStep, stepBack, previousStep, animationDirection }}>
       {children}
     </StepsContext.Provider>
   )
