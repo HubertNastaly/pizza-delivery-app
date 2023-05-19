@@ -1,6 +1,5 @@
 import { styled } from "@stitches/react"
 import * as Form from "@radix-ui/react-form"
-import { getStep } from "../../utils"
 import { StepContent } from "../shared"
 import { Order } from "../../../types"
 import { useFormContext } from "react-hook-form"
@@ -12,7 +11,7 @@ export const DeliveryDetailsStep = () => {
   const shouldShowTaxIdInput = watch('deliveryDetails.invoice')
 
   return (
-    <StepContent value={getStep('delivery-details')}>
+    <StepContent stepName="delivery-details">
       <FormRoot>
         <FormInput
           fieldName="firstName"

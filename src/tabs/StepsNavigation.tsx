@@ -5,22 +5,20 @@ import { useFormContext } from "react-hook-form"
 import { Order } from "../types"
 
 export const StepsNavigation = () => {
-  const { nextStep, previousStep } = useSteps()
+  const { nextStep, stepBack } = useSteps()
   const { watch } = useFormContext<Order>()
 
   const items = watch('items')
 
   return (
-    <>
-      <Container firstStep={!previousStep}>
-        {previousStep && <Button onClick={previousStep}>Back</Button>}
-        {nextStep ? (
-          <Button onClick={nextStep} disabled={items.length === 0}>Next</Button>
-        ) : (
-          <ConfirmButton />
-        )}
-      </Container>
-    </>
+    <Container firstStep={!stepBack}>
+      {stepBack && <Button onClick={stepBack}>Back</Button>}
+      {nextStep ? (
+        <Button onClick={nextStep} disabled={items.length === 0}>Next</Button>
+      ) : (
+        <ConfirmButton />
+      )}
+    </Container>
   )
 }
 
