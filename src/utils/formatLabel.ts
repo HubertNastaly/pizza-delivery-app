@@ -7,7 +7,7 @@ const LABELS: Record<keyof DeliveryDetails, string> = {
   city: 'City',
   street: 'Street',
   houseNumber: 'House number',
-  purchaseProof: 'Purchase proof',
+  invoice: 'Invoice',
   taxId: 'Tax identification number'
 }
 

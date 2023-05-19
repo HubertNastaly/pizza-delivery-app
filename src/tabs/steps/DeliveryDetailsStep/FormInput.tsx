@@ -1,19 +1,14 @@
 import { ForwardedRef, forwardRef } from "react"
 import * as Form from "@radix-ui/react-form"
-import { UseFormRegisterReturn, useFormContext } from "react-hook-form"
+import { useFormContext } from "react-hook-form"
 import { styled } from "@stitches/react"
-import { Order } from "../../../types"
+import { DeliveryDetailsFieldName, Order } from "../../../types"
 import { formatLabel } from "../../../utils/formatLabel"
 import { Input } from "../../../components"
 import { red } from "@radix-ui/colors"
+import { FieldProps, FormField, FormLabel } from "./shared"
 
-type FieldName = keyof Order['deliveryDetails']
-
-interface FieldProps<T extends FieldName> extends UseFormRegisterReturn<`deliveryDetails.${T}`> {
-  fieldName: T
-}
-
-const FormInputComponent = <T extends FieldName> ({ fieldName, ...inputProps }: FieldProps<T>, ref: ForwardedRef<HTMLInputElement>) => {
+const FormInputComponent = <T extends DeliveryDetailsFieldName> ({ fieldName, ...inputProps }: FieldProps<T>, ref: ForwardedRef<HTMLInputElement>) => {
   const { formState: { errors } } = useFormContext<Order>()
   const error = errors['deliveryDetails']?.[fieldName]
 
@@ -33,16 +28,6 @@ const FormInputComponent = <T extends FieldName> ({ fieldName, ...inputProps }: 
 }
 
 export const FormInput = forwardRef(FormInputComponent)
-
-const FormField = styled(Form.Field, {
-  display: 'flex',
-  flexDirection: 'column',
-  rowGap: 8
-})
-
-const FormLabel = styled(Form.Label, {
-
-})
 
 const FormError = styled(Form.Message, {
   color: red.red11

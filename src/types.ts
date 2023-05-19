@@ -14,8 +14,6 @@ export type Ingredient = 'Tomato sauce' | 'Mozzarella' | 'Ham' | 'Mushrooms' | '
 
 export type OrderItem = { type: MenuItem, quantity: number }
 
-export const purchaseProofOptions = ['invoice', 'receipt'] as const
-
 export interface DeliveryDetails {
   firstName: string
   lastName: string
@@ -23,9 +21,11 @@ export interface DeliveryDetails {
   city: string
   street: string
   houseNumber: number
-  purchaseProof: typeof purchaseProofOptions[number]
+  invoice: boolean
   taxId?: string
 }
+
+export type DeliveryDetailsFieldName = keyof Order['deliveryDetails']
 
 export interface Order {
   items: OrderItem[]
