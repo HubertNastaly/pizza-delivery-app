@@ -1,7 +1,7 @@
 import { StepContent } from "../shared"
-import { styled } from "@stitches/react"
 import { OrderDetails } from "./OrderDetails"
 import { DeliveryDetails } from "./DeliveryDetails"
+import { styled } from "../../../theme"
 
 export const SummaryStep = () => {
   return (

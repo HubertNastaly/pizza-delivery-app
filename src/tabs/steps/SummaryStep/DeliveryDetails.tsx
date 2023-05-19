@@ -1,8 +1,8 @@
-import { styled } from "@stitches/react"
 import { useFormContext } from "react-hook-form"
 import { List, ListItem } from "../../../components"
 import { DeliveryDetails as DeliveryDetailsType, Order } from "../../../types"
 import { formatLabel } from "../../../utils/formatLabel"
+import { styled } from "../../../theme"
 
 export const DeliveryDetails = () => {
   const { getValues } = useFormContext<Order>()

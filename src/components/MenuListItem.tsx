@@ -1,11 +1,10 @@
-import { styled } from "@stitches/react"
 import { HiOutlineMinusCircle, HiOutlinePlusCircle } from 'react-icons/hi'
 import { MenuItem, Order } from "../types"
 import { ListItem } from "./List"
 import { useOrder } from "../providers"
-import { mauve } from "@radix-ui/colors"
 import { useFormContext } from "react-hook-form"
 import { formatPrice } from "../utils/formatPrice"
+import { styled } from '../theme'
 
 interface Props {
   menuItem: MenuItem
@@ -26,20 +25,20 @@ export const MenuListItem = ({ description, menuItem }: Props) => {
         <TopLine>
           <ItemName>{name}</ItemName>
           <ItemPrice>{formatPrice(price)}</ItemPrice>
+          <QuantityControl>
+            <ControlButton onClick={() => removeMenuItem(menuItem)} disabled={quantity === 0}>
+              <HiOutlineMinusCircle size={24} />
+            </ControlButton>
+            <Quantity>{quantity}</Quantity>
+            <ControlButton onClick={() => addMenuItem(menuItem)}>
+              <HiOutlinePlusCircle size={24} />
+            </ControlButton>
+          </QuantityControl>
         </TopLine>
         {description && (
           <Description>{description}</Description>
         )}
       </TextGroup>
-      <QuantityControl>
-        <ControlButton onClick={() => removeMenuItem(menuItem)} disabled={quantity === 0}>
-          <HiOutlineMinusCircle size={24} />
-        </ControlButton>
-        <Quantity>{quantity}</Quantity>
-        <ControlButton onClick={() => addMenuItem(menuItem)}>
-          <HiOutlinePlusCircle size={24} />
-        </ControlButton>
-      </QuantityControl>
     </ListItem>
   )
 }
@@ -55,10 +54,11 @@ const TopLine = styled('div', {
   width: '100%',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between'
+  gap: 16
 })
 
 const ItemName = styled('span', {
+  flex: 1,
   fontWeight: 'bold'
 })
 
@@ -95,7 +95,7 @@ const ControlButton = styled('button', {
     disabled: {
       true: {
         cursor: 'default',
-        color: mauve.mauve11
+        color: '$disabled'
       }
     }
   }

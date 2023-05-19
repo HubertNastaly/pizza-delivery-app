@@ -30,11 +30,11 @@ export const PIZZAS: Pizza[] = [
 
 export const EXTRAS: MenuItem[] = [
   {
-    name: 'Ketchup',
+    name: 'Olive oil',
     price: 3
   },
   {
-    name: 'Garlic sauce',
+    name: 'Garlic olive oil',
     price: 4
   },
   {

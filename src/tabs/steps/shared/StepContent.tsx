@@ -1,7 +1,7 @@
 import * as Tabs from '@radix-ui/react-tabs';
-import { keyframes, styled } from "@stitches/react";
 import { Step, useSteps } from '../../../providers/StepsProvider';
 import { ReactNode } from 'react';
+import { keyframes, styled } from '../../../theme';
 
 const ANIMATION_DURATION = 300
 
@@ -52,14 +52,15 @@ const slideOutRightToLeft = keyframes({
 interface Props {
   stepName: Step
   children: ReactNode
+  className?: string
 }
 
-export const StepContent = ({ stepName, children }: Props) => {
+export const StepContent = ({ stepName, children, className }: Props) => {
   const { animationDirection, currentStep } = useSteps()
   const animationType = stepName === currentStep ? 'slideIn' : 'slideOut'
   
   return (
-    <TabsContent value={stepName} animationDirection={animationDirection} animationType={animationType}>
+    <TabsContent className={className} value={stepName} animationDirection={animationDirection} animationType={animationType}>
       {children}
     </TabsContent>
   )
@@ -67,7 +68,6 @@ export const StepContent = ({ stepName, children }: Props) => {
 
 const TabsContent = styled(Tabs.Content, {
   width: '100%',
-  flexShrink: 0,
   minHeight: 640,
   padding: '32px 0 64px 0',
 

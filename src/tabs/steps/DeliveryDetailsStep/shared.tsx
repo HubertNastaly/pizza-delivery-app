@@ -1,7 +1,7 @@
-import { styled } from "@stitches/react"
 import * as Form from "@radix-ui/react-form"
 import { DeliveryDetailsFieldName } from "../../../types"
 import { UseFormRegisterReturn } from "react-hook-form"
+import { styled } from "../../../theme"
 
 export const FormField = styled(Form.Field, {
   display: 'flex',

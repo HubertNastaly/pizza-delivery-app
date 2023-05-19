@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "../theme"
 
 export const List = styled('ul', {
   listStyleType: 'none',

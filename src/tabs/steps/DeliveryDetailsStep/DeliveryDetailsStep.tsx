@@ -1,10 +1,10 @@
-import { styled } from "@stitches/react"
 import * as Form from "@radix-ui/react-form"
 import { StepContent } from "../shared"
 import { Order } from "../../../types"
 import { useFormContext } from "react-hook-form"
 import { FormInput } from "./FormInput"
 import { FormSwitch } from "./FormSwitch"
+import { styled } from "../../../theme"
 
 export const DeliveryDetailsStep = () => {
   const { register, watch } = useFormContext<Order>()

@@ -1,8 +1,8 @@
-import { styled } from "@stitches/react"
 import { useSteps } from "../providers/StepsProvider"
 import { Button } from "../components"
 import { useFormContext } from "react-hook-form"
 import { Order } from "../types"
+import { styled } from "../theme"
 
 export const StepsNavigation = () => {
   const { nextStep, stepBack } = useSteps()

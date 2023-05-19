@@ -1,5 +1,4 @@
-import { mauve, orange } from "@radix-ui/colors";
-import { styled } from "@stitches/react";
+import { styled } from '../theme'
 
 export const Button = styled('button', {
   all: 'unset',
@@ -8,21 +7,22 @@ export const Button = styled('button', {
   padding: '8px 16px',
   cursor: 'pointer',
   textAlign: 'center',
+  fontFamily: 'inherit',
 
   variants: {
     view: {
       filled: {
-        color: 'white',
-        background: orange.orange11
+        color: '$white',
+        background: '$primary'
       },
       outlined: {
-        border: `1px solid ${orange.orange11}`,
+        border: `1px solid $primary`,
       }
     },
     disabled: {
       true: {
-        border: `1px solid ${mauve.mauve9}`,
-        color: mauve.mauve9,
+        border: `1px solid $disabled`,
+        color: '$disabled',
         cursor: 'default'
       }
     }

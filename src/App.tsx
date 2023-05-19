@@ -2,7 +2,7 @@ import * as Tabs from '@radix-ui/react-tabs';
 import { StepTabs, Steps, StepsNavigation } from './tabs';
 import { PageContent } from './components';
 import { useSteps } from './providers/StepsProvider';
-import { styled } from '@stitches/react';
+import { styled } from './theme';
 
 export const App = () => {
   const { currentStep } = useSteps()
