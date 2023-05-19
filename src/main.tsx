@@ -6,10 +6,10 @@ import { StepsProvider } from './providers/StepsProvider'
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <StepsProvider>
-      <OrderProvider>
+    <OrderProvider>
+      <StepsProvider>
         <App />
-      </OrderProvider>
-    </StepsProvider>
+      </StepsProvider>
+    </OrderProvider>
   </React.StrictMode>,
 )
